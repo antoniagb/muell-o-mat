@@ -1,0 +1,7 @@
+{
+  "name": "muell-o-mat",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
