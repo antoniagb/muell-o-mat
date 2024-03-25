@@ -1,25 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Inbox
+      Müll-O-Mat
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">
-        Inbox
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-list>
-    <app-message *ngFor="let message of getMessages()" [message]="message"></app-message>
-  </ion-list>
+  <div class="ion-padding center-content">
+    <h1 class="ion-margin">Willkommen beim Müll-O-Mat</h1>
+    <p class="ion-margin">Erhalte hier Informationen zu der richtigen Mülltrennung</p>
+    <p class="ion-margin">Halte dafür einfach deinen Müll vor die Kamera</p>
+
+      <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <h1>{{ classifiedTrashCategory }}</h1>
+        <ng-container *ngIf="classifiedCategory !== ''">
+          <p>{{ classifiedCategory }} </p>
+        </ng-container>
+        <ng-container *ngIf="classifiedTrashCategory === 'Wertstoffmüll'">
+          <ion-icon size="large" name="trash" style="color: yellow;"></ion-icon>
+        </ng-container>
+        <ng-container *ngIf="classifiedTrashCategory === 'Papiermüll'">
+          <ion-icon size="large" name="trash" style="color: blue;"></ion-icon>
+        </ng-container>
+        <ng-container *ngIf="classifiedTrashCategory === 'Restmüll'">
+          <ion-icon size="large" name="trash" style="color: black;"></ion-icon>
+        </ng-container>
+
+        <!-- only show in dev-mode -->
+        <div style="margin-top: 10px;" *ngFor="let prediction of predictions">
+          <span>{{ prediction }}</span>
+        </div>
+      </div>
+  </div>
 </ion-content>
