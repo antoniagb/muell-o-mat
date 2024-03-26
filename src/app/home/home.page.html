@@ -1,36 +1,31 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
+  <ion-toolbar class="" style="height: 5rem; display: flex; justify-content: center; align-items: center;">
+    <ion-title style="text-align: center;">
       Müll-O-Mat
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="ion-padding center-content">
-    <h1 class="ion-margin">Willkommen beim Müll-O-Mat</h1>
-    <p class="ion-margin">Erhalte hier Informationen zu der richtigen Mülltrennung</p>
-    <p class="ion-margin">Halte dafür einfach deinen Müll vor die Kamera</p>
-
-      <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-        <h1>{{ classifiedTrashCategory }}</h1>
-        <ng-container *ngIf="classifiedCategory !== ''">
-          <p>{{ classifiedCategory }} </p>
+  <div class="ion-padding center-content" style="height: 100%;">
+      <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; height: 100%">
+        <ng-container *ngIf="buttonPressed === true && isLoading === false">
+          <h1>Das ist ein {{ classifiedCategory }} und gehört in den</h1>
+          <div [style.background-color]="getTrashColor(classifiedTrashCategory)" style="
+          margin: 20px; padding-inline-start: 40px; padding-inline-end: 40px; padding-top: 10px; padding-bottom: 15px;">
+            <h1>{{ classifiedTrashCategory }} </h1>
+          </div>
+          <!-- only show in dev-mode -->
+          <div style="margin-top: 10px;" *ngFor="let prediction of predictions">
+            <span>{{ prediction }}</span>
+          </div>
         </ng-container>
-        <ng-container *ngIf="classifiedTrashCategory === 'Wertstoffmüll'">
-          <ion-icon size="large" name="trash" style="color: yellow;"></ion-icon>
+        <ng-container *ngIf="buttonPressed === false">
+          <ion-button (click)="onButtonPressed()" size="large">Bild aufnehmen</ion-button>
         </ng-container>
-        <ng-container *ngIf="classifiedTrashCategory === 'Papiermüll'">
-          <ion-icon size="large" name="trash" style="color: blue;"></ion-icon>
+        <ng-container *ngIf="isLoading === true">
+          <ion-spinner name="circles" style="height: 56px; width: 56px;"></ion-spinner>
         </ng-container>
-        <ng-container *ngIf="classifiedTrashCategory === 'Restmüll'">
-          <ion-icon size="large" name="trash" style="color: black;"></ion-icon>
-        </ng-container>
-
-        <!-- only show in dev-mode -->
-        <div style="margin-top: 10px;" *ngFor="let prediction of predictions">
-          <span>{{ prediction }}</span>
-        </div>
       </div>
   </div>
 </ion-content>

@@ -6,10 +6,12 @@ export const TrashCategories: TrashCategories = {
         plastic: "Plastik",
         paperCup: "Papp-Becher",
         tetraPak: "Tetra Pak",
+        yoghurt: "Joghurtbecher",
     },
     trash: {
         biological: "Biologisch",
         receipt: "Kassenzettel",
+        ballpen: "Kugelschreiber",
     },
 };
 

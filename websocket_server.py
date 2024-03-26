@@ -5,7 +5,7 @@ import serial
 import websockets
 
 # Regex-Pattern um die relevanten Daten zu extrahieren
-classification_pattern = re.compile(r'(biological|paper|paper cup|plastic|receipt|tetra pak):\s+(\d+\.\d+)')
+classification_pattern = re.compile(r'(ballpen|receipt|yoghurt):\s+(\d+\.\d+)')
 
 def parse_classification_results(data):
     # Findet alle Übereinstimmungen des Patterns im Text
@@ -22,7 +22,7 @@ async def read_serial_data(port):
         if port.in_waiting > 0:
             data_buffer += port.readline().decode('utf-8').rstrip()
             # Überprüfen, ob wir alle Daten einer Vorhersage erhalten haben
-            if "tetra pak" in data_buffer:
+            if "yoghurt" in data_buffer:
                 # Parse die gesammelten Daten
                 classification_results = parse_classification_results(data_buffer)
                 # Bereiten Sie die Daten als JSON vor
@@ -33,7 +33,7 @@ async def read_serial_data(port):
                 yield json_data
 
 async def send_serial_data(websocket, path):
-    ser = serial.Serial('COM3', 115200, timeout=1)  # COM-Port anpassen
+    ser = serial.Serial('COM5', 115200, timeout=1)  # COM-Port anpassen
     ser.write(b'AT+RUNIMPULSE\r\n')  # Befehl senden
     await asyncio.sleep(2)  # Warte auf die Antwort
 
