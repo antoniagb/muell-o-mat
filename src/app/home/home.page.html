@@ -19,10 +19,8 @@
           margin: 20px; padding-inline-start: 40px; padding-inline-end: 40px; padding-top: 10px; padding-bottom: 15px;">
             <h1 class="sigmar-regular" style="color: #EBECED;">{{ classifiedTrashCategory }} </h1>
           </div>
-          <div>
-            <h3>Hinweis: 
-
-            </h3>
+          <div> 
+              <h2> {{ getAdvice(classifiedTrashCategory) }}</h2>
           </div>
           <!-- only show in dev-mode -->
           <div style="margin-top: 10px;" *ngFor="let prediction of predictions">

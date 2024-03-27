@@ -142,13 +142,14 @@ export class HomePage implements OnDestroy{
     }
   }
 
-//  getTrashAdvice(category: string): string {
-//    if (category === 'Wertstoffmüll') {
-//      return 'Bitte entferne den Alu-Deckel des Jogurtbechers, sonst kann er nicht recycled werden. Falls eine Papierbanderole existiert, entsorge sie separat im Papiermüll.';
-//    } else if (category === 'Papiermüll') {
-//      return 'blue';
-//    } else {
-//      return 'Zum einfacheren Recycling des Kugelschreibers, solltest du den Stift in seine Einzelteile zerlegen und dann in die Tonne werfen.';
-//    }
-//  }
+  getAdvice(category: string): string {
+    if (category === 'Wertstoffmüll') {
+      return 'Hinweis: Bitte entferne den Alu-Deckel, sonst kann der Becher nicht recycled werden. Entsorge Papierbanderolen bitte separat im Papiermüll.';
+    } else if (category === 'Restmüll') {
+      return 'Hinweis: Trenne den Müll in seine Einzelteile.';
+    } else {
+      return '';
+    }
+  }
+
 }
